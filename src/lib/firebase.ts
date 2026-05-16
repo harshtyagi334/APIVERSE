@@ -3,14 +3,15 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, getDocFromServer } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCSrPQiREvm4qviKbMS0_kDohjzj7H2qYA",
-  authDomain: "apiverse-2622f.firebaseapp.com",
-  projectId: "apiverse-2622f",
-  storageBucket: "apiverse-2622f.firebasestorage.app",
-  messagingSenderId: "168472585399",
-  appId: "1:168472585399:web:928d98076152db49911932",
-  measurementId: "G-1PB0SCSF0C"
+  apiKey: "DUMMY_API_KEY",
+  authDomain: "dummy-project.firebaseapp.com",
+  projectId: "dummy-project",
+  storageBucket: "dummy-project.appspot.com",
+  messagingSenderId: "000000000000",
+  appId: "1:000000000000:web:dummyappid123456",
+  measurementId: "G-DUMMY1234"
 };
+
 
 // Note: For local development OAuth popup to work, add the local origins below
 // to the Firebase Console -> Authentication -> Settings -> Authorized domains.
