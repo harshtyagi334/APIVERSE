@@ -1,10 +1,9 @@
 {
-  "projectId": "gen-lang-client-0428122311",
-  "appId": "1:594990290401:web:0acf02b8308709fd832ea0",
-  "apiKey": "AIzaSyDhIEPPkw3kueYgieRg9_hcVRqK0c8KO1w",
-  "authDomain": "gen-lang-client-0428122311.firebaseapp.com",
-  "firestoreDatabaseId": "ai-studio-7f0c6ee3-ad8f-48f0-b110-612e770d4838",
-  "storageBucket": "gen-lang-client-0428122311.firebasestorage.app",
-  "messagingSenderId": "594990290401",
-  "measurementId": ""
+  "apiKey": "DUMMY_API_KEY",
+  "authDomain": "dummy-project.firebaseapp.com",
+  "projectId": "dummy-project",
+  "storageBucket": "dummy-project.appspot.com",
+  "messagingSenderId": "000000000000",
+  "appId": "1:000000000000:web:dummyappid123456",
+  "measurementId": "G-DUMMY1234"
 }
