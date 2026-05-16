@@ -1,0 +1,130 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile data",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "emailVerified": { "type": "boolean" },
+        "role": { "type": "string", "enum": ["user", "admin"] },
+        "points": { "type": "number" },
+        "avatarUrl": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "API": {
+      "title": "API",
+      "description": "API details in the marketplace",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "category": { "type": "string" },
+        "provider": { "type": "string" },
+        "icon": { "type": "string" },
+        "rating": { "type": "number" },
+        "latency": { "type": "number" },
+        "uptime": { "type": "number" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "isPremium": { "type": "boolean" },
+        "isTrending": { "type": "boolean" },
+        "docsUrl": { "type": "string" },
+        "baseUrl": { "type": "string" },
+        "pricing": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "category"]
+    },
+    "Discussion": {
+      "title": "Discussion",
+      "description": "Community discussion topic",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "authorId": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "likes": { "type": "number" },
+        "commentCount": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "isTrending": { "type": "boolean" }
+      },
+      "required": ["id", "authorId", "title", "content"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "Comment on a discussion",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "authorId": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "authorId", "content"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "API category",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "icon": { "type": "string" },
+        "color": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "API review",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "authorId": { "type": "string" },
+        "apiId": { "type": "string" },
+        "apiName": { "type": "string" },
+        "rating": { "type": "number" },
+        "content": { "type": "string" },
+        "pros": { "type": "string" },
+        "cons": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "authorId", "apiName", "rating", "content"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "apis/{apiId}": {
+      "schema": "API",
+      "description": "API directory"
+    },
+    "categories/{categoryId}": {
+      "schema": "Category",
+      "description": "API categories"
+    },
+    "discussions/{discussionId}": {
+      "schema": "Discussion",
+      "description": "Community discussions"
+    },
+    "discussions/{discussionId}/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Comments on discussions"
+    },
+    "api_reviews/{reviewId}": {
+      "schema": "Review",
+      "description": "API reviews"
+    }
+  }
+}

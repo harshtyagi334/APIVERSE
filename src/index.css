@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────
+   Base resets
+   ───────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Design tokens
+   ───────────────────────────────────────────── */
+@theme {
+  --font-sans: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+/* ─────────────────────────────────────────────
+   Color schemes
+   ───────────────────────────────────────────── */
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 0 0% 1%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 10%;
+    --input: 0 0% 10%;
+    --ring: 0 0% 83.1%;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Ambient background blobs
+   Lives inside a `position: fixed; contain: strict` wrapper in Layout.tsx
+   so they can NEVER cause overflow on any scrollable parent.
+   Animations run on the GPU compositor (opacity + filter only).
+   ───────────────────────────────────────────── */
+.ambient-blob {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  will-change: opacity;
+  filter: blur(100px);
+  animation: ambient-pulse 8s ease-in-out infinite alternate;
+}
+
+.ambient-blob--indigo {
+  top: -150px;
+  left: -150px;
+  width: 480px;
+  height: 480px;
+  background: hsl(239 84% 67% / 0.07);
+  animation-delay: 0s;
+}
+
+.ambient-blob--purple {
+  bottom: -80px;
+  right: -80px;
+  width: 400px;
+  height: 400px;
+  background: hsl(270 70% 60% / 0.06);
+  animation-delay: 4s;
+}
+
+@keyframes ambient-pulse {
+  from { opacity: 0.5; }
+  to   { opacity: 1;   }
+}
+
+/* ─────────────────────────────────────────────
+   Float keyframe — used by Home page floating badges.
+   Pure CSS, no JS, compositor-only (transform: translateY).
+   ───────────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0);    }
+  50%       { transform: translateY(-10px); }
+}
+
+/* ─────────────────────────────────────────────
+   Utilities
+   ───────────────────────────────────────────── */
+@layer utilities {
+  /* Subtle dot-grid background */
+  .bg-grid {
+    background-size: 60px 60px;
+    background-image:
+      linear-gradient(to right,  hsl(var(--foreground) / 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--foreground) / 0.02) 1px, transparent 1px);
+  }
+
+  /* Frosted-glass card */
+  .glass {
+    @apply bg-background/50 backdrop-blur-xl border border-border;
+  }
+
+  /* Heavier glass for modals / feature cards */
+  .glass-premium {
+    @apply bg-gradient-to-br from-foreground/10 to-transparent backdrop-blur-2xl border border-foreground/10 shadow-2xl;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 30px hsl(var(--foreground) / 0.2);
+  }
+
+  /* Serif italic gradient used on large headings */
+  .editorial-gradient {
+    @apply bg-gradient-to-r from-foreground via-foreground to-foreground/40 bg-clip-text text-transparent italic font-serif;
+  }
+
+  /* Hide scrollbar chrome while keeping scroll functionality */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /*
+    Apply to card-grid wrappers so the browser can skip painting
+    sibling sections when cards animate in.
+  */
+  .card-grid {
+    contain: layout style;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   3-D perspective helpers
+   ───────────────────────────────────────────── */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}

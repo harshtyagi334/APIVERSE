@@ -1,0 +1,6 @@
+{
+  "name": "APIVerse",
+  "description": "A futuristic API discovery, testing, documentation, and developer intelligence platform. Features AI-powered recommendations, live testing playgrounds, interactive docs, and a vibrant developer community.",
+  "requestFramePermissions": ["camera", "microphone", "geolocation"],
+  "majorCapabilities": ["AI-powered API search", "Live API Testing Playground", "Interactive Documentation", "Multi-language Support", "Developer Community"]
+}
